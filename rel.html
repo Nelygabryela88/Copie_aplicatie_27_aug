@@ -1,0 +1,916 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="button-bar">
+  <button id="showRecipients" class="export-button">👥 Recipients</button>
+  <button onclick="showAddRow()" class="export-button">➕ Add new row</button>
+  <button type="button" onclick="showAddColumn()" class="export-button">➕ Add new column</button>
+  <a href="/download_excel" class="export-button">📁 Download updated Excel</a>
+ <!--<label for="fileUpload" class="export-button upload-label">
+  <img src="{{ url_for('static', filename='paperclip-solid-full.svg') }}" alt="Upload Paperclip" style="height:18px;">
+  Upload
+</label>
+  <input type="file" id="fileUpload" name="file" accept=".xlsx" style="display:none;">-->
+  <button type="button" onclick="toggleHistory()" class="export-button">📜 Change History</button>
+  <button id="showNotifications" class="export-button" type="button"
+    style="background:#e6ffe6; color:#00964a; border:2px solid #48BC72; font-weight:600;">
+    &#128276; Notifications
+  </button>
+  <div id="recipientsPanel" style="display:none;
+        position:absolute;
+        top:54px; left:0;
+        min-width:270px;
+        background:#f9fafd;
+        border:2px solid #67b582;
+        border-radius:14px;
+        box-shadow:0 4px 24px #00964A22;
+        padding:18px 18px 10px 18px;
+        z-index:1200;">
+      <div style="font-weight:600;font-size:1.07em;color:#2596be; margin-bottom:6px;">Email Recipients</div>
+      <form id="recipientsForm" style="margin-bottom:12px;display:flex;gap:8px;">
+          <input type="email" id="addRecipientInput" placeholder="Add email..." required style="padding:7px 12px;border-radius:8px;border:1.2px solid #67b582;">
+          <button type="submit" class="export-button" style="padding:6px 13px;">Add</button>
+      </form>
+      <div id="recipientsError" style="color:#e95e53;margin-bottom:10px;display:none;"></div>
+      <ul id="recipientsList" style="padding-left:0;max-height:120px;overflow:auto;margin: 0;"></ul>
+  </div>
+</div>
+</div>
+<div style="display:flex; justify-content: flex-end;">
+  {% if reminders %}
+    <div id="notificationBox" style="
+      margin-top: 10px; 
+      margin-right: 32px; 
+      background: #e6ffe6;               /* Verde foarte deschis */
+      border-left: 6px solid #00964A;    /* Verde Schaeffler */
+      color: #00964A;                    /* Text verde */
+      padding: 20px 26px;
+      border-radius: 11px;
+      box-shadow: 0 2px 18px #00964A22;
+      max-width: 400px;
+      min-width: 200px;
+      font-size: 1.09em;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      ">
+      <div style="font-weight:700; font-size:1.14em; margin-bottom:4px; color:#00964A;">
+        &#128276; Notifications
+      </div>
+      <ul style="list-style: disc inside; margin: 0; padding-left: 0;">
+        {% for rem in reminders %}
+          <li style="margin-bottom:8px;">{{ rem|safe }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+
+<!--<div style="margin-bottom:15px; font-size:1.09em; color:#2596be;">
+    Sheet activ: {{ session['sheet'] if session['sheet'] else 'REL' }}<br>
+    Fișier: {{ session['file_name'] if session['file_name'] else 'Implicit' }}<br>
+</div>-->
+
+<!-- Search bar personalizată -->
+<div class="search-wrapper">
+  <div class="search-bar">
+    <input type="text" id="customSearchInput" placeholder="Search">
+    <button id="searchButton" class="search-icon-btn">
+      <img src="{{ url_for('static', filename='icons8-search.svg') }}" alt="Search">
+    </button>
+  </div>
+</div>
+
+<!-- Dropdown pentru sorted by -->
+<div id="column-selector" style="display:inline-block; position:relative; margin-bottom: 15px;">
+  <button id="showColumnsBtn" type="button">
+    Sorted by ▼
+  </button>
+  <div id="column-menu">
+    <label style="font-weight:600;display:block;margin-bottom:4px;">
+      <input type="checkbox" id="check-all-cols" checked> All
+    </label>
+    <div id="dynamic-col-checkboxes"></div>
+    <button onclick="applyColumnVisibility(); return false;">OK</button>
+  </div>
+</div>
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+  <button id="scrollLeft" style="font-size:1.6em; background:#f5f6fa; border:1.5px solid #48BC72; border-radius:15px; padding:2px 12px; cursor:pointer;">&#60;</button>
+  <div style="flex:1; height: 1px;"></div>
+  <button id="scrollRight" style="font-size:1.6em; background:#f5f6fa; border:1.5px solid #48BC72; border-radius:15px; padding:2px 12px; cursor:pointer;">&#62;</button>
+</div>
+<div class="table-container">
+  <table id="relTable" class="display">
+   <thead>
+<tr>
+{% for col in columns %}
+    <th style="position:relative;">
+    {{ col }}
+    <span class="col-dropdown-arrow" data-col="{{ col }}">▼</span>
+</th>
+
+{% endfor %}
+<th>Actions</th>
+</tr>
+</thead>
+    <tbody>
+      {% set excel_header = colors[0] %}
+      {% for rowi in range(data|length) %}
+      <tr data-rowid="{{ rowids[rowi] }}">
+        {% for i in range(columns|length) %}
+          {% set colname = columns[i] %}
+          {% set excel_col_idx = -1 %}
+          {% if colname in excel_header %}
+            {% set excel_col_idx = excel_header.index(colname) %}
+          {% endif %}
+           <td 
+      contenteditable="true"
+      data-col="{{ colname }}"
+      {% if colors[rowi][i] %}
+      style="background:{{ colors[rowi][i] }};"
+      {% endif %}
+      onblur="saveCell(this, '{{ rowids[rowi] }}', '{{ colname }}')">
+    {{ data[rowi][i] }}
+  </td>
+        {% endfor %}
+        <td><button onclick="deleteRow(this)">🗑️</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div id="globalColMenu" class="col-dropdown-menu" style="display:none; position:absolute; z-index:9999;">
+    <button class="rename-col-btn"><span style="font-size:1.14em; margin-right:4px;">&#9998;</span> Rename column</button>
+    <button class="delete-col-btn"><span style="font-size:1.12em; margin-right:4px;">&#10006;</span> Delete column</button>
+</div>
+{#<!--<div id="sheetTabs" style="display:flex;gap:10px;justify-content:center;margin-top:30px;">
+  {% for t in tabs %}
+    <button class="sheet-btn{% if current_file_id == t.file_id and current_sheet == t.sheet %} active{% endif %}"
+           data-file="{{ t.file_id }}" data-file-name="{{ t.file_name }}" data-sheet="{{ t.sheet }}">
+      {{ t.label }}
+   </button>
+  {% endfor %}
+</div>
+</div>-->#}
+
+<!-- AICI VINE template-ul pentru adăugarea rândului NOU! -->
+<template id="addRowTemplate">
+  <tr id="addRowInputs">
+    {% for col in columns %}
+      <td contenteditable="true" data-col="{{ col }}" class="add-cell" style="background: #e6ffe6;"></td>
+    {% endfor %}
+    <td>
+      <button onclick="submitNewRow(this)" class="export-button" style="background:#48BC72; color:white;font-weight:bold;">✔️</button>
+      <button onclick="removeAddRow(this)" class="export-button" style="background:#e95e53; color:white; margin-left:7px;font-weight:bold;">&#10006;</button>
+    </td>
+  </tr>
+</template>
+<!-- Paleta color mare pentru click-dreapta, cu pasteluri -->
+<div id="bigColorPalette" style="display:none; position:absolute; z-index:20000; background:#fff; border:2px solid #48BC72; border-radius:12px; box-shadow:0 2px 20px #48BC7212; padding:10px 15px;">
+  <div style="display:flex; flex-wrap: wrap; gap:6px;">
+    <!-- culori de bază -->
+    <div class="colorpick" data-color="#FF0000" style="background:#FF0000;" title="Roșu"></div>
+    <div class="colorpick" data-color="#FFA500" style="background:#FFA500;" title="Portocaliu"></div>
+    <div class="colorpick" data-color="#FFFF00" style="background:#FFFF00;" title="Galben"></div>
+    <div class="colorpick" data-color="#00FF00" style="background:#00FF00;" title="Verde"></div>
+    <div class="colorpick" data-color="#00FFFF" style="background:#00FFFF;" title="Turcoaz"></div>
+    <div class="colorpick" data-color="#0000FF" style="background:#0000FF;" title="Albastru"></div>
+    <div class="colorpick" data-color="#FF00FF" style="background:#FF00FF;" title="Magenta"></div>
+    <div class="colorpick" data-color="#A52A2A" style="background:#A52A2A;" title="Maro"></div>
+    <div class="colorpick" data-color="#8B4513" style="background:#8B4513;" title="Maro închis"></div>
+    <div class="colorpick" data-color="#FFD700" style="background:#FFD700;" title="Aur"></div>
+    <div class="colorpick" data-color="#008000" style="background:#008000;" title="Verde închis"></div>
+    <div class="colorpick" data-color="#000000" style="background:#000000;" title="Negru"></div>
+    <div class="colorpick" data-color="#D3D3D3" style="background:#D3D3D3; border:1px solid #bbb;" title="Gri deschis"></div>
+    <!-- pasteluri noi -->
+    <div class="colorpick" data-color="#FFB3BA" style="background:#FFB3BA;" title="Pastel roșu"></div>
+    <div class="colorpick" data-color="#FFDFBA" style="background:#FFDFBA;" title="Pastel portocaliu"></div>
+    <div class="colorpick" data-color="#FFFFBA" style="background:#FFFFBA;" title="Pastel galben"></div>
+    <div class="colorpick" data-color="#BAFFC9" style="background:#BAFFC9;" title="Pastel verde"></div>
+    <div class="colorpick" data-color="#BAE1FF" style="background:#BAE1FF;" title="Pastel albastru"></div>
+    <div class="colorpick" data-color="#E2BAFF" style="background:#E2BAFF;" title="Pastel mov deschis"></div>
+    <div class="colorpick" data-color="#FFC8E2" style="background:#FFC8E2;" title="Pastel roz"></div>
+    <div class="colorpick" data-color="#B5EAD7" style="background:#B5EAD7;" title="Pastel mint"></div>
+    <div class="colorpick" data-color="#C9C9FF" style="background:#C9C9FF;" title="Pastel lavender"></div>
+    <div class="colorpick" data-color="#F1F8E9" style="background:#F1F8E9;" title="Pastel verde foarte deschis"></div>
+    <div class="colorpick" data-color="#E3F2FD" style="background:#E3F2FD;" title="Pastel albastru pal"></div>
+    <div class="colorpick" data-color="#F8BBD0" style="background:#F8BBD0;" title="Pastel pink 2"></div>
+    <div class="colorpick" data-color="#C8E6C9" style="background:#C8E6C9;" title="Pastel green 2"></div>
+    <div class="colorpick" data-color="#FFECB3" style="background:#FFECB3;" title="Pastel crem galben"></div>
+    <div class="colorpick" data-color="#B3E5FC" style="background:#B3E5FC;" title="Pastel sky blue"></div>
+    <div class="colorpick" data-color="#F5E6FF" style="background:#F5E6FF;" title="Pastel mov foarte deschis"></div>
+    <!-- fără culoare -->
+    <div class="colorpick" data-color="#FFFFFF" style="background:#FFFFFF; border:2px dashed #bbb;" title="Fără culoare">✖</div>
+  </div>
+</div>
+
+<!-- Meniu glisant pentru Change History -->
+<div id="historyDrawer" class="history-drawer">
+  <div class="drawer-header">
+    <h3>📜 Change History</h3>
+    <button onclick="closeHistory()" class="close-btn">✖</button>
+  </div>
+  <div id="historyContent" class="drawer-content">
+    <p>Loading...</p>
+  </div>
+</div>
+<!-- Meniu glisant pentru Change History -->
+<div id="historyDrawer" class="history-drawer">
+  <div class="drawer-header">
+    <h3>📜 Change History</h3>
+    <button onclick="closeHistory()" class="close-btn">✖</button>
+  </div>
+  <div id="historyContent" class="drawer-content">
+    <p>Loading...</p>
+  </div>
+</div>
+
+<div id="colorPalette" style="display:none; position:absolute; background:#fff; border:1px solid #48BC72; padding:10px; border-radius:8px; box-shadow:0 2px 12px #00964a18; z-index:999;">
+  <div class="color-option" data-color="#FFCCCC" title="Roșu deschis" style="width:24px;height:24px;margin:4px;display:inline-block;border-radius:4px;border:1px solid #ccc;background:#FFCCCC;cursor:pointer;"></div>
+  <div class="color-option" data-color="#CCFFCC" title="Verde deschis" style="width:24px;height:24px;margin:4px;display:inline-block;border-radius:4px;border:1px solid #ccc;background:#CCFFCC;cursor:pointer;"></div>
+  <div class="color-option" data-color="#CCCCFF" title="Albastru deschis" style="width:24px;height:24px;margin:4px;display:inline-block;border-radius:4px;border:1px solid #ccc;background:#CCCCFF;cursor:pointer;"></div>
+  <div class="color-option" data-color="#FFFFCC" title="Galben deschis" style="width:24px;height:24px;margin:4px;display:inline-block;border-radius:4px;border:1px solid #ccc;background:#FFFFCC;cursor:pointer;"></div>
+  <div class="color-option" data-color="#FFFFFF" title="Fără culoare" style="width:24px;height:24px;margin:4px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;border:2px dashed #bbb;background:#FFFFFF;cursor:pointer;">✖</div>
+</div>
+<!-- Fereastră modal pentru comentariu -->
+<div id="commentModal" style="display:none;position:fixed;z-index:20001;left:0;top:0;width:100vw;height:100vh;background:#2226;align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:24px 28px; border-radius:14px;max-width:380px;width:94vw; box-shadow:0 8px 44px #1113; display:flex; flex-direction:column;align-items:center;">
+    <label for="commentInput" style="font-weight:600;font-size:1.13em;color:#333;margin-bottom:6px;">Cell comment:</label>
+    <textarea id="commentInput" style="width:98%;min-height:70px;resize:vertical;padding:8px;font-size:1em;border-radius:8px;border:1.5px solid #67b582;"></textarea>
+    <div style="margin-top:14px;display:flex;gap:14px;">
+      <button id="commentSave" style="padding:8px 22px;border-radius:7px;background:#48BC72;color:#fff;font-weight:600;border:none;cursor:pointer;">Save</button>
+      <button id="commentCancel" style="padding:8px 22px;border-radius:7px;background:#e95e53;color:#fff;font-weight:600;border:none;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 2px solid #48BC72;
+  border-radius: 30px;
+  padding: 6px 12px;
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1em;
+  padding: 8px;
+  border-radius: 25px;
+}
+
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.search-icon-btn img {
+  height: 24px;
+}
+</style>
+
+<script>
+  let table;
+
+  $(document).ready(function() {
+    if (!$.fn.DataTable.isDataTable('#relTable')) {
+      table = $('#relTable').DataTable({
+        scrollX: true,
+        ordering: false,
+        paging: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        language: {
+          paginate: {
+            previous: "⟨",
+            next: "⟩"
+          },
+         lengthMenu: "Show _MENU_ rows per page",
+info: "Rows _START_–_END_ of _TOTAL_",
+search: "Search:",
+zeroRecords: "No matching records found",
+infoEmpty: "No records",
+infoFiltered: "(filtered from _MAX_ total)"
+        }
+      });
+    }
+  
+    $('#customSearchInput').on('input', function() {
+      const searchTerm = $(this).val().trim();
+      table.search(searchTerm).draw(); // Caută în toate coloanele
+    });
+
+    $('#searchButton').on('click', function() {
+      const searchTerm = $('#customSearchInput').val().trim();
+      table.search(searchTerm).draw(); // Caută în toate coloanele
+    });
+
+    buildColumnMenu();
+
+    document.getElementById('showColumnsBtn').onclick = function(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('column-menu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+      if (menu.style.display === 'block') buildColumnMenu();
+    }
+
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('column-menu');
+      const btn = document.getElementById('showColumnsBtn');
+      if (menu && menu.style.display === 'block' && !menu.contains(event.target) && event.target !== btn) {
+        menu.style.display = 'none';
+      }
+    });
+  });
+
+  function buildColumnMenu() {
+    const boxcont = document.getElementById('dynamic-col-checkboxes');
+    let html = '';
+    {% for col in columns %}
+      html += `<label><input type="checkbox" class="col-chb" data-colidx="{{ loop.index0 }}" checked> {{ col }}</label><br>`;
+    {% endfor %}
+    boxcont.innerHTML = html;
+    
+    document.getElementById('check-all-cols').onclick = function() {
+      const chk = this.checked;
+      document.querySelectorAll('#dynamic-col-checkboxes .col-chb').forEach(cb => {
+        cb.checked = chk;
+      });
+    };
+    
+    document.querySelectorAll('#dynamic-col-checkboxes .col-chb').forEach(cb => {
+      cb.onchange = function() {
+        document.getElementById('check-all-cols').checked = 
+          Array.from(document.querySelectorAll('#dynamic-col-checkboxes .col-chb')).every(x => x.checked);
+      }
+    });
+  }
+
+  function applyColumnVisibility() {
+    document.querySelectorAll('#dynamic-col-checkboxes .col-chb').forEach(function(cb) {
+      const colIdx = parseInt(cb.dataset.colidx);
+      table.column(colIdx).visible(cb.checked); // Modifică vizibilitatea coloanei
+    });
+    document.getElementById('column-menu').style.display = "none"; // Ascunde meniul după modificare
+  }
+  function toggleHistory() {
+  const drawer = document.getElementById('historyDrawer');
+  drawer.style.right = '0';
+
+  fetch('/get_history')
+    .then(r => r.text())
+    .then(txt => {
+      document.getElementById('historyContent').innerText = txt || "No changes recorded.";
+    })
+    .catch(() => {
+      document.getElementById('historyContent').innerText = "Unable to load history.";
+    });
+}
+
+function closeHistory() {
+  const drawer = document.getElementById('historyDrawer');
+  drawer.style.right = '-400px';
+}
+function scrollToAddRow() {
+    $('#addRowInputs input:first').focus();
+    $('html, body').animate({
+       scrollTop: $('#addRowInputs').offset().top-100
+    }, 300);
+}
+
+function submitNewRow(btn) {
+    // Citim direct din celule editabile!
+    const tds = $('#addRowInputs td.add-cell');
+    const columns = [];
+    const values = [];
+    let valid = false;
+    tds.each(function(){
+      columns.push($(this).data('col'));
+      let val = $(this).text().trim();
+      values.push(val);
+      if (val) valid = true;
+    });
+    if (!valid) {
+     alert("Please fill in at least one cell!");
+      return;
+    }
+    $.post('/add_row', {
+      'columns[]': columns,
+      'values[]': values
+    }).done(function(r){
+      if(r.success) location.reload();
+     else alert("Error while saving: " + (r.error || ''));
+    }).fail(function(){
+      alert("Network or server error while saving.");
+    });
+}
+function deleteRow(btn) {
+    if (!confirm('Are you sure you want to delete this row?')) return;
+    let row = $(btn).closest('tr');
+    let rowid = row.data('rowid');
+    $.post('/delete_row', {rowid: rowid})
+     .done(function(r){
+         if(r.success) {
+             // Scoate rândul din tabel vizual
+             table.row(row).remove().draw();
+         } else {
+             alert('Erorr: ' + (r.error || ''));
+         }
+     })
+     .fail(function(){
+        alert('Network error while deleting.');
+     });
+}
+function showAddRow() {
+  if ($('#addRowInputs').length) {
+    $('#addRowInputs td.add-cell:first').focus();
+    return;
+  }
+  // Obținem template-ul și îl clonăm ca nod real
+  let tmpl = document.getElementById('addRowTemplate');
+  let $row = $(tmpl.content.firstElementChild.cloneNode(true)); 
+  $('#relTable tbody').prepend($row);
+  $row.find('td.add-cell:first').focus();
+  $('html, body').animate({
+    scrollTop: $row.offset().top - 100
+  }, 300);
+}
+
+function removeAddRow(btn) {
+  $(btn).closest('tr').remove();
+}
+function showCellCount() {
+    let n = $('td.selected-cell').length;
+    let badge = $('#cellCountBadge');
+    if (n > 1) {
+        badge.text('count: ' + n);
+        badge.fadeIn(50);
+    } else {
+        badge.fadeOut(80);
+    }
+}
+function showAddColumn() {
+   let newCol = prompt('Name of the new column:');
+    if (!newCol) return;
+    $.post('/add_column', { column: newCol }, function(r){
+        if (r.success) {
+            // Încarcă doar dacă backend-ul confirmă succesul, și NU rapid de două ori
+            window.location = window.location.href; // sau location.reload()
+        } else {
+           alert("Error adding column: " + (r.error || ""));
+        }
+    });
+}
+function saveCell(td, rowid, column) {
+    let value = $(td).text().trim();
+    $.post('/edit_cell', {rowid: rowid, column: column, value: value}, function(r){
+        if (!r.success) {
+         alert("Error while saving: " + (r.error || ""));
+        }
+    });
+}
+// Selectare multiplă de celule (CTRL/cmd click)
+let selectedCells = [];
+
+/*$(document).on('click', 'td[data-col]', function(event){
+    // Ignoră celulele din rândul de adăugare
+    if ($(this).closest('#addRowInputs').length) return;
+    // Selectare multiplă cu CTRL/cmd
+    if (event.ctrlKey || event.metaKey) {
+        $(this).toggleClass('selected-cell');
+    } else {
+        // Selectează doar pe cea curentă
+        $('td.selected-cell').removeClass('selected-cell');
+        $(this).addClass('selected-cell');
+    }
+    event.stopPropagation();
+});*/
+// Click pe celulă => focus/editezi  
+$(document).on('click', 'td[contenteditable="true"]', function(e) {
+    $(this).focus();
+    // La editare, orice selecție verde se anulează
+    $('td.selected-cell').removeClass('selected-cell');
+    e.stopPropagation();
+});
+
+// Deselectare la click pe fundal
+$(document).on('click', function(event){
+    if (!$(event.target).closest('td[data-col]').length && !$(event.target).closest('#bigColorPalette').length) {
+        $('td.selected-cell').removeClass('selected-cell');
+    }
+});
+$(document).on('click', '.delete-col-btn', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    let col = $(this).data('col');
+    if (!confirm("Are you sure you want to delete the column '" + col + "'? This cannot be undone!")) return;
+    $.post('/delete_column', {column: col}, function(r){
+        if(r.success) {
+            window.location = window.location.href;
+        } else {
+            alert('Eroare la ștergere coloană: ' + (r.error || ''));
+        }
+    });
+});
+// Colorare multiplă cu paleta via click dreapta
+let paletteCells = null;
+
+document.addEventListener('contextmenu', function(e) {
+    let td = $(e.target).closest('td[data-col]');
+    if (td.length && !td.closest('#addRowInputs').length) {
+        e.preventDefault();
+        // Dacă celula e selectată, ia toate selectate; altfel doar pe cea curentă
+        let selected = $('td.selected-cell');
+        if (!td.hasClass('selected-cell')) {
+            $('td.selected-cell').removeClass('selected-cell');
+            td.addClass('selected-cell');
+            selected = td;
+        }
+        paletteCells = selected;
+        let X = e.pageX, Y = e.pageY;
+        $('#bigColorPalette').css({left:X+5,top:Y+5}).fadeIn(110);
+        setTimeout(()=>{
+            $(document).one('mousedown', function(ev){
+                if (!$(ev.target).closest('#bigColorPalette').length) {
+                    $('#bigColorPalette').hide();
+                }
+            });
+        },20);
+    }
+});
+
+// La click pe o culoare din paletă, colorează toate celulele selectate + salvează pe backend
+$('#bigColorPalette').on('click', '.colorpick', function(){
+    let color = $(this).attr('data-color');
+    if (!paletteCells) return;
+    paletteCells.each(function(){
+        let cell = $(this);
+        cell.css('background', color);
+        let col = cell.data('col');
+        let tr = cell.closest('tr');
+        let rowid = tr.data('rowid');
+        // Trimite AJAX la backend pentru fiecare celulă
+        $.post('/edit_color', {rowid: rowid, column: col, color: color}, function(r){
+            if(!r.success) alert("Error saving color: " + (r.error || ''));
+        });
+    });
+    $('#bigColorPalette').hide();
+    paletteCells = null;
+});
+
+/* Dublu-click pe celulă pentru adăugare/edit comentariu
+$(document).on('dblclick', 'td[data-col]', function(e){
+    let td = $(this);
+    let comentariu_vechi = td.attr('data-comment') || '';
+    let noul = prompt('Comentariu la celulă:', comentariu_vechi);
+    if (noul !== null) {
+        let col = td.data('col');
+        let tr = td.closest('tr');
+        let rowid = tr.data('rowid');
+        $.post('/edit_comment', {rowid: rowid, column: col, comment: noul}, function(r){
+            if (r.success) {
+                td.attr('data-comment', noul);
+                if(noul.length) td.addClass('has-comment');
+                else td.removeClass('has-comment');
+            } else {
+                alert("Eroare salvare comentariu: " + (r.error || ''));
+            }
+        });
+    }
+});
+
+// Tooltip la hover, doar dacă există comentariu
+$(document).on('mouseenter', 'td[data-col]', function(){
+    let val = $(this).attr('data-comment');
+    if(val && val.trim().length) {
+        let $tip = $('<div class="comment-tooltip"></div>').text(val);
+        $('body').append($tip);
+        let offset = $(this).offset();
+        $tip.css({top: offset.top-10, left: offset.left+$(this).outerWidth()+6});
+        $(this).data('active-tooltip', $tip);
+    }
+});
+$(document).on('mouseleave', 'td[data-col]', function(){
+    let $tip = $(this).data('active-tooltip');
+    if ($tip) $tip.remove();
+});*/
+let lastCommentInfo = null;
+
+// Dublu-click pe celulă pentru comentariu MODERN
+$(document).on('dblclick', 'td[data-col]', function(){
+    let td = $(this);
+    let vechi = td.attr('data-comment') || '';
+    $('#commentInput').val(vechi);
+    $('#commentModal').addClass('active');
+    lastCommentInfo = {
+        td: td,
+        col: td.data('col'),
+        rowid: td.closest('tr').data('rowid')
+    };
+    $('#commentInput').focus().select();
+});
+
+$('#commentSave').on('click', function(){
+    if(!lastCommentInfo) return;
+    let noul = $('#commentInput').val();
+    let td = lastCommentInfo.td;
+    let col = lastCommentInfo.col;
+    let rowid = lastCommentInfo.rowid;
+    $.post('/edit_comment', {rowid: rowid, column: col, comment: noul}, function(r){
+        if (r.success) {
+            td.attr('data-comment', noul);
+            if(noul.length) td.addClass('has-comment');
+            else td.removeClass('has-comment');
+        } else {
+            alert("Error saving comment: " + (r.error || ''));
+        }
+        $('#commentModal').removeClass('active');
+        lastCommentInfo = null;
+    });
+});
+$('#commentCancel').on('click', function(){
+    $('#commentModal').removeClass('active');
+    lastCommentInfo = null;
+});
+$('#commentModal').on('mousedown', function(e){
+    // click pe fundalul semi-transparent închide
+    if(e.target === this) {
+        $('#commentModal').removeClass('active');
+        lastCommentInfo = null;
+    }
+});
+
+// -- restul codului pentru tooltip --
+$(document).on('mouseenter', 'td[data-col]', function(){
+    let val = $(this).attr('data-comment');
+    if(val && val.trim().length) {
+        let $tip = $('<div class="comment-tooltip"></div>').text(val);
+        $('body').append($tip);
+        let offset = $(this).offset();
+        $tip.css({top: offset.top-10, left: offset.left+$(this).outerWidth()+6});
+        $(this).data('active-tooltip', $tip);
+    }
+});
+$(document).on('mouseleave', 'td[data-col]', function(){
+    let $tip = $(this).data('active-tooltip');
+    if ($tip) $tip.remove();
+});
+let isDraggingCells = false;
+
+// Pornire selectare la click pe celulă
+$(document).on('mousedown', 'td[data-col]', function(e){
+    if (e.button !== 0) return; // Doar stânga mouse-ului
+    if ($(this).closest('#addRowInputs').length) return;
+
+    // Dacă nu ești în editare text, începe selectare de celule
+    if (!$(this).is('[contenteditable="true"]:focus')) {
+        isDraggingCells = true;
+        $('td.selected-cell').removeClass('selected-cell');  // RESET! sau scoate pentru selectare aditivă
+        $(this).addClass('selected-cell');
+        showCellCount();
+        e.preventDefault(); // Oprește selectarea de text by default (asta vrei pentru selecție de celule)
+    }
+});
+
+// Dragging/selectare multipla — la trecere peste alte celule
+$(document).on('mouseenter', 'td[data-col]', function(e){
+    if (!isDraggingCells) return;
+    if ($(this).closest('#addRowInputs').length) return;
+    if (!$(this).is('[contenteditable="true"]:focus')) {
+        $(this).addClass('selected-cell');
+        showCellCount();
+    }
+});
+
+// Oprește selecția la eliberarea mouse-ului ORIUNDE
+$(document).on('mouseup', function(e){
+    if (isDraggingCells) {
+        isDraggingCells = false;
+        showCellCount();
+    }
+});
+
+// La click pe orice altceva — resetează selecția (opțional)
+$(document).on('mousedown', function(e){
+    if (!$(e.target).closest('td[data-col]').length) {
+        $('td.selected-cell').removeClass('selected-cell');
+        $('#cellCountBadge').fadeOut(80);
+    }
+});
+  // Deschide/închide meniul la click pe săgeata ▼
+// Deschide meniul la click pe ▼ de la coloană
+$(document).on('click', '.col-dropdown-arrow', function(e){
+    e.stopPropagation();
+
+    // Ascunde vechiul meniu dacă era deja vizibil
+    $('#globalColMenu').hide();
+
+    // Obține numele coloanei
+    let col = $(this).data('col');
+    // Poziționează meniul exact sub săgeată!
+    let arrow = $(this);
+    let offset = arrow.offset();
+    let left = offset.left;
+    let top = offset.top + arrow.height() + 2; // sub săgeată
+
+    $('#globalColMenu').css({left: left + 'px', top: top + 'px', display: 'block'});
+    // Setează pe btn-urile din meniu coloana curent activă
+    $('#globalColMenu .rename-col-btn').data('col', col);
+    $('#globalColMenu .delete-col-btn').data('col', col);
+});
+// Închide meniul dacă dai click pe altundeva
+$(document).on('click', function(e){
+    if (!$(e.target).closest('#globalColMenu').length && !$(e.target).hasClass('col-dropdown-arrow')) {
+        $('#globalColMenu').hide();
+    }
+});
+// Handler pentru butonul x (merge exact ca înainte)
+$(document).on('click', '.delete-col-btn', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    let col = $(this).data('col');
+   if (!confirm("Are you sure you want to delete column '" + col + "'?")) return;
+    $.post('/delete_column', {column: col}, function(r){
+        if(r.success) {
+            window.location = window.location.href;
+        } else {
+            alert('Eroare la ștergere coloană: ' + (r.error || ''));
+        }
+    });
+});
+$(document).on('keydown', 'td[contenteditable="true"]', function(e){
+    if(e.key === "Enter"){
+        e.preventDefault();
+        $(this).blur(); // declanșează onblur/saveCell automat!
+    }
+});
+$(document).on('click', '.rename-col-btn', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    let oldCol = $(this).data('col');
+    let newCol = prompt("Enter new name for column:", oldCol);
+    if (!newCol || newCol === oldCol) return;
+    $.post('/rename_column', { old_column: oldCol, new_column: newCol }, function(r){
+        if(r.success) {
+            window.location = window.location.href;
+        } else {
+            alert("Error renaming column: " + (r.error || ""));
+        }
+    });
+});
+$(document).on('click', '.sheet-btn', function(){
+     $.post('/set_context', {
+         file_id: $(this).data('file'),
+         file_name: $(this).data('fileName'),
+         sheet: $(this).data('sheet')
+     }, function(r){
+       if(r.success) window.location.reload();
+     });
+   });
+   $('#scrollLeft').on('click', function(){
+    let cur = $('#mainTableContainer').scrollLeft();
+    $('#mainTableContainer,#tableTopScroll').scrollLeft(cur-150);
+});
+$('#scrollRight').on('click', function(){
+    let cur = $('#mainTableContainer').scrollLeft();
+    $('#mainTableContainer,#tableTopScroll').scrollLeft(cur+150);
+});
+
+/*$('#fileUpload').on('change', function(){
+    let fd = new FormData();
+    fd.append('file', this.files[0]);
+    $.ajax({
+        url:'/upload_excel',
+        method:'POST',
+        data:fd,
+        contentType:false,
+        processData:false,
+        success:function(r){
+            if(r.success){
+                // Construiește dropdown cu sheet-uri
+                let sheetSel = $('<select/>');
+                r.sheets.forEach(function(s){ sheetSel.append($('<option/>').val(s).text(s)); });
+                let modal = $(`
+                    <div id="sheetModal" style="position:fixed;top:30%;left:50%;transform:translateX(-50%); background:#fff; border:2px solid #48BC72; padding:18px; z-index:99999;">
+                        <h3>Alege Sheet-ul</h3>
+                    </div>
+                `);
+                modal.append(sheetSel);
+                let btn = $('<button/>').text('Deschide Sheet').css({margin:'8px'}).on('click', function(){
+                    $.post('/set_context',{
+                        file_id: r.file_id,
+                        file_name: r.file_name,
+                        sheet: sheetSel.val()
+                    },function(rr){
+                        if(rr.success){
+                            modal.remove();
+                            window.location.reload();
+                        }
+                    });
+                });
+                modal.append(btn);
+                $('body').append(modal);
+            }else{
+                alert("Upload failed");
+            }
+        }
+    });
+});*/
+</script>
+<script>
+// Deschide dropdown-ul la click Recipients
+$('#showRecipients').on('click', function (e) {
+    e.stopPropagation();
+    $.get('/emails_json', function (resp) {
+        let $ul = $('#recipientsList'); $ul.empty();
+        if (!resp.emails.length) {
+            $ul.append('<li style="color:#777; font-style:italic;">(No recipients)</li>');
+        }
+        resp.emails.forEach(function(email) {
+            $ul.append(
+                `<li style="list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;">
+                <span style="font-family:monospace;font-size:1em;">${email}</span>
+                <button class="delete-recipient-btn" data-email="${email}" style="padding:2px 8px;background:#e95e53;color:#fff;border:none; border-radius:6px;cursor:pointer;">Delete</button>
+                </li>`
+            );
+        });
+        $('#recipientsPanel').stop().fadeIn(160);
+    });
+});
+
+// Adaugă email din formular
+$('#recipientsForm').on('submit', function(e){
+    e.preventDefault();
+    let val = $('#addRecipientInput').val().trim();
+    $('#recipientsError').hide();
+    if (!val) return;
+    $.post('/add_email', {email: val}, function (r) {
+        if (r.success) {
+            $('#showRecipients').click();
+            $('#addRecipientInput').val('');
+        } else {
+            $('#recipientsError').text(r.error || "Error!").show();
+        }
+    });
+});
+
+// Șterge email din lista
+$('#recipientsList').on('click', '.delete-recipient-btn', function () {
+    let email = $(this).data('email');
+    if (!confirm('Sure you want to delete ' + email + ' from recipients?')) return;
+    $.post('/delete_email', {email: email}, function (r) {
+        if (r.success) $('#showRecipients').click();
+        else alert(r.error || "Delete failed");
+    });
+});
+
+// Închide dropdown-ul dacă dai click pe fundal
+$(document).on('mousedown', function(e) {
+    if($('#recipientsPanel').is(':visible') && !$(e.target).closest('#recipientsPanel, #showRecipients').length) {
+        $('#recipientsPanel').fadeOut(120);
+    }
+});
+
+document.getElementById('showNotifications').onclick = function() {
+  var box = document.getElementById('notificationBox');
+  if (box) box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+};
+
+// Pentru butonul X din box (close)
+document.addEventListener("DOMContentLoaded", function(){
+  var closeBtn = document.getElementById("closeNotif");
+  if (closeBtn) {
+    closeBtn.onclick = function() {
+      var box = document.getElementById('notificationBox');
+      if (box) box.style.display = "none";
+    }
+  }
+});
+$(function() {
+  // Dacă există DataTables, folosește dataTables_scrollBody, altfel table-container
+  let $container = $('.dataTables_scrollBody').length ?
+                    $('.dataTables_scrollBody') : $('.table-container');
+  const SCROLL_PIXELS = 200; // cât să “sară” la fiecare click
+
+  $('#scrollLeft').on('click', function(){
+    $container.animate({ scrollLeft: $container.scrollLeft() - SCROLL_PIXELS }, 200);
+  });
+  $('#scrollRight').on('click', function(){
+    $container.animate({ scrollLeft: $container.scrollLeft() + SCROLL_PIXELS }, 200);
+  });
+});
+</script>
+
+
+{% endblock %}

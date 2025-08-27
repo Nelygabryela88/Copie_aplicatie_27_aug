@@ -1,0 +1,290 @@
+[2025-08-25 10:52:00] EDIT | rowid=0 | column=Calibration Due date | value=26-Aug-25
+[2025-08-25 10:52:00] EDIT | rowid=0 | column=Calibration Due date | value=26-Aug-25
+[2025-08-25 10:52:00] EDIT | rowid=0 | column=Calibration Due date | value=26-Aug-25
+[2025-08-25 11:46:34] EDIT | rowid=468 | column=Arrival date of equip | value=17-Jan-25
+[2025-08-25 11:46:35] EDIT | rowid=439 | column=Comments | value=Room ENV S02
+[2025-08-25 11:49:13] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 11:49:25] EDIT | rowid=1 | column=Equipment Identification | value=RELTSR_0059
+[2025-08-25 11:49:33] EDIT | rowid=1 | column=Equipment Identification | value=RELTSR_0059
+[2025-08-25 11:49:36] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-25 14:02:18] EDIT | rowid=84 | column=Intermediate check planning | value=N/A
+[2025-08-25 14:02:18] COLOR | rowid=84 | column=Intermediate check planning | value=#FFFFFF
+[2025-08-25 14:03:22] EDIT | rowid=90 | column=Equipment Identification | value=EMC - PS 03
+[2025-08-25 14:03:28] EDIT | rowid=90 | column=Equipment Identification | value=1EMC - PS 03
+[2025-08-25 14:03:28] EDIT | rowid=90 | column=Equipment Identification | value=1EMC - PS 03
+[2025-08-25 14:03:28] EDIT | rowid=90 | column=Equipment Identification | value=1EMC - PS 03
+[2025-08-25 14:06:13] EDIT | rowid=0 | column=Equipment Identification | value=1RELTSR_0013
+[2025-08-25 14:06:39] EDIT | rowid=0 | column=Equipment Identification | value=modificat  RELTSR_0013
+[2025-08-25 14:07:01] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-25 14:07:10] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 14:10:33] EDIT | rowid=0 | column=Equipment Identification | value=Incercare RELTSR_0013
+[2025-08-25 14:19:55] EDIT | rowid=0 | column=Equipment Identification | value=incercare  RELTSR_0013
+[2025-08-25 14:20:02] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 14:35:59] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-25 14:39:54] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-25 14:48:36] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 14:48:36] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 14:49:31] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 14:49:31] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 14:50:22] ADD | rowid=new | column=None | value=['incercare', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 14:50:25] ADD | rowid=new | column=None | value=['incercare', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 14:50:25] EDIT | rowid=0 | column=Maintenance planning | value=14-Sep-24
+[2025-08-25 14:51:19] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:20] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:20] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:21] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:23] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:23] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:27] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:27] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:29] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:29] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:30] ADD | rowid=new | column=None | value=['incercareee', 'ddf', 'fvd', 'fvad', 'fvdc', 'vdac', 'fvd', 'vv', 'vv', 'vv', 'fd', 'sv', 'ff', 'fcd', 'fsad', 'f', 'dS', 'D', 'FF', 'F', 'D', 'D', 'FT', 'K', 'L', 'AW', 'E', 'EE']
+[2025-08-25 14:51:51] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-25 14:51:51] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 14:52:01] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:09:07] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:09:07] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:18:52] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:18:52] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:18:57] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:18:57] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:19:03] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-25 15:19:04] EDIT | rowid=1 | column=Model | value=46 7564
+[2025-08-25 15:19:07] EDIT | rowid=1 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:07] COLOR | rowid=0 | column=Description | value=#FF0000
+[2025-08-25 15:19:07] COLOR | rowid=0 | column=Manufacturer | value=#FF0000
+[2025-08-25 15:19:07] COLOR | rowid=1 | column=Manufacturer | value=#FF0000
+[2025-08-25 15:19:23] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:23] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-25 15:19:31] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:31] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-25 15:19:35] EDIT | rowid=1 | column=Model | value=46 7564
+[2025-08-25 15:19:37] EDIT | rowid=1 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:38] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-25 15:19:40] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:40] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-25 15:19:45] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:45] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:50] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:19:50] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-25 15:20:07] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:20:07] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-25 15:20:16] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:20:18] EDIT | rowid=0 | column=Serial No | value=58566286520030
+[2025-08-25 15:20:18] COLOR | rowid=0 | column=Manufacturer | value=#FF0000
+[2025-08-25 15:20:20] COLOR | rowid=0 | column=Description | value=#FF0000
+[2025-08-25 15:20:20] COLOR | rowid=0 | column=Model | value=#FF0000
+[2025-08-25 15:20:20] COLOR | rowid=0 | column=Serial No | value=#FF0000
+[2025-08-25 15:20:27] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-25 15:20:28] EDIT | rowid=0 | column=Manufacturer | value=Holex
+[2025-08-25 15:23:08] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:23:08] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:29:18] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:29:18] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:41:12] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:41:12] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:41:17] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-25 15:41:17] COLOR | rowid=0 | column=Calibration ID. No | value=#FF0000
+[2025-08-25 15:41:22] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-25 15:41:22] COLOR | rowid=0 | column=Description | value=#FF0000
+[2025-08-25 15:46:32] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 15:46:33] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:53:30] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 15:55:02] ADD | rowid=new | column=None | value=['hhhh', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 15:55:03] ADD | rowid=new | column=None | value=['hhhh', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 15:55:03] ADD | rowid=new | column=None | value=['hhhh', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 16:12:08] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:12:09] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:21:48] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:21:49] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:22:16] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:22:16] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-25 16:22:31] ADD | rowid=new | column=None | value=['1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 16:23:04] ADD | rowid=new | column=None | value=['', 'wddd', 'wdx', 'ws', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-25 16:23:24] DELETE | rowid=476 | column=None | value=None
+[2025-08-25 16:23:29] DELETE | rowid=477 | column=None | value=None
+[2025-08-25 16:24:17] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:24:18] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:24:26] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:24:27] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-25 16:24:49] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:24:50] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:24:57] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:24:58] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:25:56] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:25:57] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-25 16:26:06] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:26:07] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-25 16:26:23] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-25 16:39:17] EDIT | rowid=9 | column=Description | value=Torque screwdriver
+[2025-08-25 16:39:19] EDIT | rowid=1 | column=Manufacturer | value=Holex
+[2025-08-25 16:41:43] EDIT | rowid=1 | column=Description | value=Digital inclinometer
+[2025-08-25 16:41:44] COLOR | rowid=2 | column=Certificate no | value=#FFFFFF
+[2025-08-26 09:05:20] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:05:22] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:06:00] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 09:06:09] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:06:43] EDIT | rowid=406 | column=Calibration Due date | value=27-Aug-25
+[2025-08-26 09:39:20] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:39:21] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:39:34] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:39:37] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:39:50] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:40:05] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:40:06] COLOR | rowid=0 | column=Equipment Identification | value=#FFFF00
+[2025-08-26 09:40:23] ADD | rowid=new | column=None | value=['', 'incercare', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-26 09:40:37] DELETE | rowid=476 | column=None | value=None
+[2025-08-26 09:40:54] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:40:56] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:41:16] EDIT | rowid=0 | column=Equipment Identification | value=incercare RELTSR_0013
+[2025-08-26 09:41:33] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:41:34] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:42:00] EDIT | rowid=9 | column=Dept | value=Q&L
+[2025-08-26 09:42:03] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:42:05] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:42:52] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:42:53] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:53:07] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:53:09] EDIT | rowid=0 | column=rowid | value=0.0
+[2025-08-26 09:53:10] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:53:12] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:53:20] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:53:21] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:53:31] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:53:32] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:53:40] EDIT | rowid=0 | column=Manufacturer | value=Weiss Technik
+[2025-08-26 09:53:41] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:53:42] COLOR | rowid=0 | column=Calibration ID. No | value=#FF0000
+[2025-08-26 09:53:43] COLOR | rowid=0 | column=Description | value=#FF0000
+[2025-08-26 09:53:44] COLOR | rowid=0 | column=Manufacturer | value=#FF0000
+[2025-08-26 09:53:49] EDIT | rowid=0 | column=Manufacturer | value=Weiss Technik
+[2025-08-26 09:53:50] COLOR | rowid=0 | column=Description | value=#FFFFFF
+[2025-08-26 09:53:51] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:53:52] COLOR | rowid=0 | column=Calibration ID. No | value=#FFFFFF
+[2025-08-26 09:53:53] COLOR | rowid=0 | column=Manufacturer | value=#FFFFFF
+[2025-08-26 09:56:07] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:56:08] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 09:56:20] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:56:20] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 09:57:11] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 09:57:12] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 10:10:48] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:10:49] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 10:13:00] ADD | rowid=new | column=None | value=['incercare', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-26 10:13:11] DELETE | rowid=476 | column=None | value=None
+[2025-08-26 10:21:04] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:21:06] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 10:21:45] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:21:46] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 10:21:52] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:21:55] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 10:22:11] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:22:12] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 10:22:30] ADD | rowid=new | column=None | value=['incercare', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+[2025-08-26 10:22:40] DELETE | rowid=476 | column=None | value=None
+[2025-08-26 10:22:48] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:22:48] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-26 10:22:52] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 10:22:53] COLOR | rowid=0 | column=Calibration ID. No | value=#FF0000
+[2025-08-26 10:23:02] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 10:23:04] COLOR | rowid=0 | column=Calibration ID. No | value=#FFFFFF
+[2025-08-26 10:23:08] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:23:09] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 10:23:12] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 10:23:13] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-26 11:32:42] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:43] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:32:44] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:45] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:47] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:49] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:32:53] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:54] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:32:56] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:57] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:32:58] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:32:59] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:00] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:02] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:03] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:04] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-26 11:33:07] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:08] EDIT | rowid=2 | column=Inventory number | value=TBD
+[2025-08-26 11:33:11] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:12] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:14] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:15] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:16] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:17] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:23] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:24] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:25] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:27] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:33:30] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:33:33] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:34:17] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:34:18] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:34:20] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-26 11:34:26] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:34:27] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:35:59] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:36:03] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:36:08] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:36:17] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:36:22] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:38:09] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 11:38:12] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 11:38:15] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 13:46:44] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 13:48:26] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 14:03:48] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 14:17:16] EDIT | rowid=0 | column=Serial No | value=58566286520030
+[2025-08-26 14:17:17] EDIT | rowid=0 | column=Model | value=TempEvent T/1300/70a/10
+[2025-08-26 14:17:19] EDIT | rowid=0 | column=Manufacturer | value=Weiss Technik
+[2025-08-26 14:17:21] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-26 14:56:45] EDIT | rowid=9 | column=Equipment Identification_comment | value=N/A
+[2025-08-26 15:55:16] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-26 16:19:49] EDIT | rowid=0 | column=Description | value=Temperature Chamber
+[2025-08-26 16:19:51] EDIT | rowid=0 | column=Calibration ID. No | value=TSR10794
+[2025-08-26 16:19:52] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 08:43:41] EDIT | rowid=0 | column=Serial No | value=58566286520030
+[2025-08-27 08:44:03] EDIT | rowid=3 | column=Manufacturer | value=MEMS AG
+[2025-08-27 08:44:24] EDIT | rowid=9 | column=Calibration supplier | value=S.C. METROMAT S.R.L.
+[2025-08-27 09:32:49] EDIT | rowid=91 | column=Calibration Due date | value=28-Aug-26
+[2025-08-27 09:33:17] EDIT | rowid=91 | column=Calibration Due date | value=28-Aug-26
+[2025-08-27 09:33:20] COLOR | rowid=91 | column=Calibration Due date | value=#FF0000
+[2025-08-27 09:33:44] EDIT | rowid=91 | column=Calibration Due date | value=N/A
+[2025-08-27 09:34:17] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:34:37] EDIT | rowid=91 | column=Last calibration date | value=28-Aug-24
+[2025-08-27 09:34:38] COLOR | rowid=91 | column=Last calibration date | value=#00FF00
+[2025-08-27 09:34:46] EDIT | rowid=91 | column=Last calibration date | value=28-Aug-24
+[2025-08-27 09:34:47] EDIT | rowid=91 | column=Last calibration date | value=28-Aug-24
+[2025-08-27 09:34:49] EDIT | rowid=91 | column=Last calibration date | value=28-Aug-24
+[2025-08-27 09:36:15] EDIT | rowid=91 | column=Last calibration date | value=28-Aug-24
+[2025-08-27 09:36:16] COLOR | rowid=91 | column=Last calibration date | value=#FFFFFF
+[2025-08-27 09:37:18] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:37:21] COLOR | rowid=91 | column=Maintenance planning | value=#FF0000
+[2025-08-27 09:37:51] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:37:56] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:43:30] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:43:32] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-27 09:44:12] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:44:27] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:44:28] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-27 09:44:29] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:44:42] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:44:43] COLOR | rowid=0 | column=Equipment Identification | value=#FF0000
+[2025-08-27 09:44:53] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:44:54] COLOR | rowid=0 | column=Equipment Identification | value=#FFFFFF
+[2025-08-27 09:46:19] EDIT | rowid=91 | column=Calibration Due date | value=N/A
+[2025-08-27 09:46:20] COLOR | rowid=91 | column=Calibration Due date | value=#00FF00
+[2025-08-27 09:46:22] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:46:24] EDIT | rowid=91 | column=Maintenance planning | value=28-Aug-25
+[2025-08-27 09:46:26] COLOR | rowid=91 | column=Maintenance planning | value=#00FF00
+[2025-08-27 09:47:26] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 09:52:48] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 10:04:54] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 10:45:06] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 10:45:07] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013
+[2025-08-27 10:45:09] EDIT | rowid=0 | column=Equipment Identification | value=RELTSR_0013

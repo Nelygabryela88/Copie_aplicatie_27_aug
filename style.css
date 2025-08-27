@@ -1,0 +1,528 @@
+/* Bază */
+body {
+    background: #fff;
+    color: #00964A;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+header {
+    background: #fff;
+    border-bottom: 4px solid #48BC72;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+header h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+}
+.main-page {
+    padding: 16px 36px;
+}
+
+/* Tabel + container */
+.table-container {
+    overflow-x: auto;
+    border: 1px solid #48BC72;
+    border-radius: 8px;
+    padding: 12px;
+    background: #F9FFF6;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+th, td {
+    border: 1px solid #00964A;
+    padding: 10px;
+}
+th {
+    background: #00964A;
+    color: #fff;
+}
+
+/* Toast */
+#toast {
+    background: #00964A;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 6px 16px rgba(0, 150, 74, 0.2);
+    font-weight: 600;
+}
+
+/* Căutare personalizată */
+.custom-search {
+    position: relative;
+    width: 420px;
+    margin: 30px auto;
+}
+.custom-search input {
+    width: 100%;
+    padding: 12px 44px 12px 20px;
+    border: 2px solid #00964A;
+    border-radius: 50px;
+    font-size: 16px;
+    outline: none;
+    background-color: #fff;
+    color: #00964A;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+}
+.custom-search input:focus {
+    border-color: #48BC72;
+    box-shadow: 0 0 0 4px rgba(72, 188, 114, 0.15);
+}
+.custom-search input::placeholder {
+    color: #00964A;
+    font-weight: 500;
+}
+.search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    cursor: pointer;
+}
+.search-icon img {
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
+/* Butoane */
+.export-button {
+    background-color: #48BC72;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.08s ease;
+    margin-right: 10px;
+    display: inline-block;
+    text-decoration: none;
+    user-select: none;
+}
+.export-button:hover {
+    background-color: #00964A;
+}
+.export-button:active {
+    transform: translateY(1px);
+}
+
+/* Colori paletă */
+.color-option {
+    width: 28px;
+    height: 24px;
+    border-radius: 4px;
+    margin: 4px 7px 4px 0;
+    display: inline-block;
+    cursor: pointer;
+    border: 1.5px solid #60b77a;
+    transition: transform .13s, border .13s, box-shadow .13s;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.color-option:hover {
+    transform: scale(1.13);
+    border-color: #00964A;
+    z-index: 1;
+}
+.color-option[data-color="#FFFFFF"] {
+    border: 2px dashed #bbb !important;
+    background: #fff !important;
+}
+.color-option[data-color="#FFFFFF"]:hover {
+    border: 2px solid #c00 !important;
+    background: #f9f9f9 !important;
+}
+.color-option[data-color="#FFFFFF"] span {
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    font-size: 16px;
+    color: #c00;
+    pointer-events: none;
+}
+
+/* Paletă plutitoare */
+#colorPalette {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #48BC72;
+    padding: 10px 10px 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0, 150, 74, 0.12);
+    z-index: 999;
+    min-width: 150px;
+}
+
+/* Meniu "Sorted by" */
+#column-menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #48BC72;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #00964a18;
+    padding: 18px 16px 10px 16px;
+    z-index: 10;
+    min-width: 170px;
+}
+#column-selector button {
+    border-radius: 18px;
+    background: #fff;
+    color: #00964A;
+    border: 2px solid #48BC72;
+    padding: 6px 20px;
+    cursor:pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.2s,color 0.2s;
+}
+#column-selector button:hover {
+    background: #F9FFF6;
+}
+#column-menu label { font-size: 1em; cursor:pointer; }
+#column-menu button {
+    border-radius:16px;
+    border:none;
+    padding:6px 22px;
+    background:#48BC72;
+    color:#fff;
+    margin-top:10px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* DataTables mici ajustări */
+.dataTables_wrapper .dataTables_filter {
+    display: none; /* folosim search-ul tău personalizat */
+}
+.dataTables_wrapper .dataTables_scrollHead {
+    border-bottom: 1px solid #48BC72;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 16px !important;
+    border: 1px solid #48BC72 !important;
+    color: #00964A !important;
+    padding: 2px 8px !important;
+    margin: 2px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #48BC72 !important;
+    color: #fff !important;
+    border-color: #48BC72 !important;
+}
+
+/* Celule editabile feedback */
+td[contenteditable="true"] {
+    outline: none;
+}
+td[contenteditable="true"]:focus {
+    box-shadow: inset 0 0 0 2px rgba(72, 188, 114, 0.35);
+}
+
+/* Panou istoric */
+#historyPanel {
+    background:#F9FFF6;
+    border:1px solid #48BC72;
+    border-radius:8px;
+}
+
+/* Utilitare */
+.hidden { display:none !important; }
+.center { text-align:center; }
+.button-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.custom-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.custom-search input {
+  width: 50%;
+  padding: 12px 16px;
+  font-size: 1.1em;
+  border: 2px solid #48BC72;
+  border-radius: 8px;
+}
+.search-icon {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.search-icon img {
+  height: 24px;
+}
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 2px solid #48BC72;
+  border-radius: 12px;
+  padding: 6px 12px;
+  background: #fff;
+  width: 50%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1em;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.search-icon-btn img {
+  height: 24px;
+}
+
+.history-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #F9FFF6;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.1);
+  border-left: 2px solid #48BC72;
+  transition: right 0.3s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #48BC72;
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.drawer-content {
+  padding: 16px;
+  overflow-y: auto;
+  font-size: 0.95em;
+  white-space: pre-wrap;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: white;
+  cursor: pointer;
+}
+#addRowInputs td.add-cell {
+  background: #e6ffe6 !important;
+  border-top: 2.5px solid #48BC72 !important;
+  min-width: 90px;
+}
+#bigColorPalette {
+  display: none;
+  position: absolute;
+  z-index: 5000;
+  background: #fff;
+  border: 2px solid #48BC72;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px #48BC721a;
+  padding: 10px 15px;
+  min-width: 260px;
+}
+#bigColorPalette .colorpick {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid #eee;
+  font-size: 1.3em;
+  margin: 3px;
+  transition: border 0.12s, transform 0.09s;
+}
+#bigColorPalette .colorpick:hover {
+  border: 2px solid #48BC72;
+  transform: scale(1.09);
+  z-index:2;
+}
+#bigColorPalette .colorpick[data-color="#FFFFFF"] {
+  color: #e95e53;
+  border: 2px dashed #bbb !important;
+}
+.selected-cell {
+    box-shadow: inset 0 0 0 2.5px #48BC72;
+    outline: 2px solid #48BC72;
+    background: #e3ffe2 !important;
+}
+.has-comment {
+    border: 2px dotted #fa8c16 !important;
+    position:relative;
+    
+}
+#commentModal { display: none; position: fixed; z-index: 20001; left: 0; top: 0; width: 100vw; height: 100vh; background: #2226; align-items:center; justify-content: center;}
+#commentModal.active { display:flex !important; }
+#commentModal textarea:focus { border-color: #48BC72; outline: none; }
+.comment-tooltip {
+    position: absolute;
+    background: #222;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 8px;
+    z-index: 9999;
+    min-width: 120px;
+    font-size: 0.9em;
+    pointer-events: none;
+    box-shadow: 0 4px 18px #1113;
+    max-width: 320px;
+}
+#cellCountBadge {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    background: #00964A;
+    color: #fff;
+    border-radius: 30px;
+    padding: 7px 20px;
+    font-size: 1.15em;
+    box-shadow: 0 2px 12px #00964A22;
+    z-index: 99999;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0.94;
+    letter-spacing: 0.03em;
+    display: none;
+}
+.col-dropdown-arrow {
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 8px;
+  color: #fff;
+  background: #48BC72;
+  border-radius: 6px;
+  padding: 2px 6px 1px 6px;
+  user-select: none;
+  transition: background 0.2s;
+  vertical-align: middle;
+}
+
+.col-dropdown-arrow:hover {
+  background: #00964A;
+}
+
+.col-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 27px;
+  right: 8px;
+  z-index: 111;
+  background: #FFF;
+  border: 1.5px solid #48BC72;
+  box-shadow: 0 2px 16px #00964A22;
+  min-width: 110px;
+  border-radius: 10px;
+  padding: 6px 0 6px 0;
+}
+
+.col-dropdown-menu button.delete-col-btn {
+  display: block;
+  background: none;
+  color: #e95e53;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 1em;
+  padding: 7px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+
+.col-dropdown-menu button.delete-col-btn:hover {
+  background: #f8d4d7;
+  color: #c00;
+}
+.col-dropdown-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 1em;
+  padding: 7px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.12s, color 0.12s;
+}
+
+.col-dropdown-menu button:hover {
+  background: #f3fbf4;
+}
+
+.col-dropdown-menu button.delete-col-btn {
+  color: #e95e53;
+}
+.col-dropdown-menu button.delete-col-btn:hover {
+  background: #f8d4d7;
+  color: #c00;
+}
+
+.col-dropdown-menu button.rename-col-btn {
+  color: #2596be;
+}
+.col-dropdown-menu button.rename-col-btn:hover {
+  background: #e3f4fc;
+  color: #036186;
+}
+#recipientsPanel {
+      position: absolute;
+      z-index: 1200;
+      top: 60px;   /* ajustează conform poziției tale */
+      right: 35px; /* ajustează pt a se potrivi sub buton */
+      min-width: 280px;
+      box-shadow: 0 4px 24px #00964A18;
+   }
+   .button-bar { position: relative; }
